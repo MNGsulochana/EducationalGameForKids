@@ -74,15 +74,16 @@ public class MainActivity extends ActionBarActivity {
 	int count = 1;
 	int w1, h1;
 	int width, height;
-	Spinner s;
+	Spinner s,s1;
 	ArrayAdapter<String> aa;
 	private String TAG="SUCHI";
 	float initialX,initialY;
 
+//HERE I ADDED PLANET ARRAY AND ADD ELEMENT IN ALPHABET ARRAY
 
 	int[] galleryposition = {R.drawable.gallery1, R.drawable.gallery2, R.drawable.colorspage, R.drawable.shapespage,
 			R.drawable.monthspage, R.drawable.dayspage, R.drawable.fruitspage, R.drawable.vegetablespage, R.drawable.animalspage,
-			R.drawable.bodypartspage, R.drawable.vehiclespage,R.drawable.planet_3,R.drawable.numberquiz, R.drawable.gallery4};
+			R.drawable.bodypartspage, R.drawable.vehiclespage,R.drawable.planet_13,R.drawable.numberquiz, R.drawable.gallery4};
 	int[] alphabets = {R.drawable.gallery1, R.drawable.a, R.drawable.b, R.drawable.c, R.drawable.dog, R.drawable.e, R.drawable.f,
 			R.drawable.g, R.drawable.h, R.drawable.i, R.drawable.j, R.drawable.k, R.drawable.l,
 			R.drawable.m, R.drawable.n, R.drawable.o, R.drawable.p, R.drawable.q, R.drawable.r,
@@ -131,7 +132,7 @@ public class MainActivity extends ActionBarActivity {
 			R.drawable.shoulders, R.drawable.knees};
 	int[] vehicles = {R.drawable.vehiclespage, R.drawable.bus, R.drawable.bicycle, R.drawable.car, R.drawable.helicopter, R.drawable.motorcycle, R.drawable.plane,
 			R.drawable.ship, R.drawable.tractor, R.drawable.train, R.drawable.truck, R.drawable.tram};
-	int[] planets={R.drawable.planet_3,R.drawable.mercury,R.drawable.venus,R.drawable.earth,R.drawable.mars,
+	int[] planets={R.drawable.planet_13,R.drawable.mercury,R.drawable.venus,R.drawable.earth,R.drawable.mars,
 			       R.drawable.jupiter,R.drawable.saturn,R.drawable.uranus_1,R.drawable.neptune,R.drawable.pluto_1};
 	int[] numberquiz = {R.drawable.numberquiz, R.drawable.cirlcle1, R.drawable.cirlcle2, R.drawable.cirlcle3, R.drawable.cirlcle4,
 			R.drawable.cirlcle5, R.drawable.cirlcle6, R.drawable.cirlcle7, R.drawable.cirlcle8, R.drawable.cirlcle9,
@@ -139,21 +140,21 @@ public class MainActivity extends ActionBarActivity {
 
 	String[] gallerypositiontext = {"Alphabets", "Numbers", "Colors", "shapes", "Months", "Days", "fruits", "vegetables", "animals",
 			"Human Body parts", "Vehicles", "Planets","NumberQuiz", "Letter Quiz"};
-	String[] alphabetstext = {"", "apple", "ball", "cat", "dog", "egg", "fish", "guitar", "horse", "insect", "jam",
+	String[] alphabetstext = {"Alphabets", "apple", "ball", "cat", "dog", "egg", "fish", "guitar", "horse", "insect", "jam",
 			"kangaroo", "ladybird", "monkey", "nurse", "octopus", "pig", "queen", "rainbow", "sun", "tiger",
 			"umbrella", "violin", "window", "x ray", "yacht", "zebra"};
-	String[] numberstext = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"};
+	String[] numberstext = {"Numbers","one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"};
 	String[] colorstext = {"Colors", "Red", "Orange", "Blue", "Green", "Yellow", "pink", "Violet", "Brown", "Grey", "White",
 			"Black", "indigo"};
 	String[] shapestext = {"Shapes", "Circle", "Line", "Square", "Triangle", "Rectangle", "Pentagon", "Hexagon", "Octagon", "Heart",
 			"Oval", "Arrow", "Star"};
 	String[] monthstext = {"Months", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 	String[] daystext = {"Days", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
-	String[] fruitstext = {"fruits", "apricot", "apple", "aubergine", "avocado", "banana", "blackberry", "blueberry", "cherry", "coconut", "cranberry", "grapes", "grapefruit", "kiwi",
+	String[] fruitstext = {"Fruits", "apricot", "apple", "aubergine", "avocado", "banana", "blackberry", "blueberry", "cherry", "coconut", "cranberry", "grapes", "grapefruit", "kiwi",
 			"lemon", "lime", "mandarin", "mango", "melon", "orange", "papaya", "peach", "pear", "pineapple", "plum", "pomegranate", "pomelo", "quince", "raspberry", "strawberry", "watermelon"};
 	String[] vegetablestext = {"vegetables", "asparagus", "beans", "beetroot", "bittergourd", "brinjal", "broccoli", "cabbage", "capsicum", "carrot", "cauliflower", "celery", "chilli", "corn", "cucumber",
 			"eggplant", "garlic", "ginger", "greenpea", "ladyfinger", "mushroom", "onion", "potato", "pumpkin", "radish", "spinach", "squash", "sweetpotato", "tomato"};
-	String[] animalstext = {"animals", "armadillo", "bat", "bear", "bird", "butterfly", "cat", "chicken", "cow", "crocodile", "dog", "duck", "elephant", "fish", "fly", "fox", "frog", "horse", "jaguar", "lamb", "lion"
+	String[] animalstext = {"Animals", "armadillo", "bat", "bear", "bird", "butterfly", "cat", "chicken", "cow", "crocodile", "dog", "duck", "elephant", "fish", "fly", "fox", "frog", "horse", "jaguar", "lamb", "lion"
 			, "lizard", "monkey", "mouse", "pandabear", "parrot", "polarbear", "pony", "rabbit", "shark", "sheep", "snail", "snake", "spider", "squirrel", "tiger", "tortoise",
 			"wolf", "zebra"};
 	String[] bodypartstext = {"Human Body Parts", "eye", "head", "mouth", "ear", "hair", "arm", "hand", "finger", "thumb", "leg", "foot", "nose", "eyebrow", "eyelashes", "forehead", "lips", "teeth", "tongue",
@@ -192,16 +193,16 @@ public class MainActivity extends ActionBarActivity {
 
 
 		//form here we are calling the customdialog fragment
-		CustomDialogFragment cf=new CustomDialogFragment();
-		cf.show(getSupportFragmentManager(),"hi");
+		/*CustomDialogFragment cf=new CustomDialogFragment();
+		cf.show(getSupportFragmentManager(),"hi");*/
 
 		final AssetManager assetManager = getAssets();
+
+//INITIALIZE SPINNER
+
 		s = (Spinner) findViewById(R.id.spinner1);
-		/*aa = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, gallerypositiontext);
-		s.setAdapter(aa);*/
-		aa = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, gallerypositiontext);
-		s.setAdapter(aa);
-		aa.notifyDataSetChanged();
+
+		//aa = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, gallerypositiontext);
 		//s.setAdapter(aa);
 
 		width = getWindow().getWindowManager().getDefaultDisplay().getWidth();
@@ -262,45 +263,44 @@ public class MainActivity extends ActionBarActivity {
 				b2.setVisibility(View.GONE);
 				b3.setVisibility(View.GONE);
 				b4.setVisibility(View.GONE);
-
-				if(pos == 0){
-					aa = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_dropdown_item, alphabetstext);
-					s.setAdapter(aa);
-					aa.notifyDataSetChanged();
-				}
-
-
 				i1.setImageResource(galleryposition[position]);
 				t1.setText(gallerypositiontext[position]);
-
-				//HERE I AM SETTING THE TEXT TO SPINNER WHAT I SELECTED FROM GSLLERY
-				/*
-				s.setAdapter(aa);
+				/*s.setAdapter(aa);
 				s.setSelection(position);
 				aa.notifyDataSetChanged();*/
-				/*if(position!=0)
-				{
-					spinnerchild(position);
-				}*/
 				t2.setVisibility(View.GONE);
 				speak(t1.getText().toString());
+
+//HERE I AM SETTING SPINNER DROP DOWN LIST BASED ON GALLERY CLICKS	AND I AM CALLING THIS METHOD OUT OF ONCREATE METHOD
+
+				if(position!=-1)
+				{
+					select(position);
+				}
+//HERE I AM MAKING SPINNER IS VISIBLE
 				Log.d(TAG,"pos:"+pos);
 				if (pos != 1) {
+					s.setVisibility(View.VISIBLE);
 					t2.setVisibility(View.GONE);
 					i1.setVisibility(View.VISIBLE);
 				}
-				if (pos == 1) {
+				if (pos1 == 1) {
+					s.setVisibility(View.VISIBLE);
 					t2.setText("");
 				}
 				if (pos == 8) {
+					s.setVisibility(View.VISIBLE);
 					i6.setVisibility(View.VISIBLE);
 				}
 				if (pos != 8) {
+					s.setVisibility(View.VISIBLE);
 					i6.setVisibility(View.GONE);
 				}
+//HERE I HAD CHANGE NUMBERS AS 11,12 AS 12,13
 
-				//heere i have to change numbers as 11,12 as 12,13
+
 				if (pos != 12) {
+					s.setVisibility(View.VISIBLE);
 					l1.setVisibility(View.GONE);
 					l3.setVisibility(View.GONE);
 					i1.setVisibility(View.VISIBLE);
@@ -310,6 +310,7 @@ public class MainActivity extends ActionBarActivity {
 				}
 
 				if (pos != 13) {
+					s.setVisibility(View.VISIBLE);
 					l1.setVisibility(View.GONE);
 					l3.setVisibility(View.GONE);
 					i1.setVisibility(View.VISIBLE);
@@ -338,104 +339,138 @@ public class MainActivity extends ActionBarActivity {
 					b2.setVisibility(View.VISIBLE);
 					b3.setVisibility(View.VISIBLE);
 					b4.setVisibility(View.VISIBLE);
+
+				}
+//HERE I MADE SPINNER IS INVISIBLE
+
+				if(pos==12||pos==13)
+				{
+					s.setVisibility(View.GONE);
 				}
 			}
 		});
 
-		/*aa = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, gallerypositiontext);
-		s.setAdapter(aa);
-*/
-
 //SPINNER CLICKS
+
 		s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-				pos = position;
-				counter = 0;
-				count = 1;
-				cnt = 1;
-				b1.setText("");
-				b2.setText("");
-				b3.setText("");
-				b4.setText("");
-				t1.setTextSize(30);
-				l1.setVisibility(View.GONE);
-				l3.setVisibility(View.GONE);
-				i5.setVisibility(View.GONE);
-				b1.setVisibility(View.GONE);
-				b2.setVisibility(View.GONE);
-				b3.setVisibility(View.GONE);
-				b4.setVisibility(View.GONE);
-
-				i1.setImageResource(galleryposition[position]);
-				t1.setText(gallerypositiontext[position]);
-				t2.setVisibility(View.GONE);
-				speak(t1.getText().toString());
-
-
-				if (pos != 1) {
+				//if (position == 0) {
+				if(pos1==0) {
+					int counter1 = position;
 					t2.setVisibility(View.GONE);
 					i1.setVisibility(View.VISIBLE);
+					i1.setImageResource(alphabets[counter1]);
+					t1.setText(alphabetstext[counter1]);
+					speak(t1.getText().toString());
+					counter1++;
 				}
-				if (pos == 1) {
-					t2.setText("");
-				}
-				if (pos == 8) {
-					i6.setVisibility(View.VISIBLE);
-				}
-				if (pos != 8) {
-					i6.setVisibility(View.GONE);
-				}
-				//here i had change pos==11 as pos=12 and pos==12 as pos=13
-				if (pos != 12) {
-					l1.setVisibility(View.GONE);
-					l3.setVisibility(View.GONE);
+				if(pos1==1) {
+					int counter1 = position;
+					t2.setVisibility(View.GONE);
 					i1.setVisibility(View.VISIBLE);
-					i4.setVisibility(View.VISIBLE);
-					i3.setVisibility(View.VISIBLE);
-					i2.setVisibility(View.VISIBLE);
+					i1.setImageResource(numbers[counter1]);
+					t1.setText(numberstext[counter1]);
+					speak(t1.getText().toString());
+					counter1++;
 				}
-
-				if (pos != 13) {
-					l1.setVisibility(View.GONE);
-					l3.setVisibility(View.GONE);
+				if(pos1==2) {
+					int counter1 = position;
+					t2.setVisibility(View.GONE);
 					i1.setVisibility(View.VISIBLE);
-					i4.setVisibility(View.VISIBLE);
-					i3.setVisibility(View.VISIBLE);
-					i2.setVisibility(View.VISIBLE);
+					i1.setImageResource(colors[counter1]);
+					t1.setText(colorstext[counter1]);
+					speak(t1.getText().toString());
+					counter1++;
 				}
-				if (pos == 13) {
-
-					i4.setVisibility(View.GONE);
-					i3.setVisibility(View.VISIBLE);
-					i2.setVisibility(View.GONE);
-					i5.setVisibility(View.VISIBLE);
-					b1.setVisibility(View.VISIBLE);
-					b2.setVisibility(View.VISIBLE);
-					b3.setVisibility(View.VISIBLE);
-					b4.setVisibility(View.VISIBLE);
+				if(pos1==3) {
+					int counter1 = position;
+					t2.setVisibility(View.GONE);
+					i1.setVisibility(View.VISIBLE);
+					i1.setImageResource(shapes[counter1]);
+					t1.setText(shapestext[counter1]);
+					speak(t1.getText().toString());
+					counter1++;
 				}
-				if (pos == 12) {
-
-					i4.setVisibility(View.GONE);
-					i3.setVisibility(View.VISIBLE);
-					i2.setVisibility(View.GONE);
-					i5.setVisibility(View.VISIBLE);
-					b1.setVisibility(View.VISIBLE);
-					b2.setVisibility(View.VISIBLE);
-					b3.setVisibility(View.VISIBLE);
-					b4.setVisibility(View.VISIBLE);
+				if(pos1==4) {
+					int counter1 = position;
+					t2.setVisibility(View.GONE);
+					i1.setVisibility(View.VISIBLE);
+					i1.setImageResource(months[counter1]);
+					t1.setText(monthstext[counter1]);
+					speak(t1.getText().toString());
+					counter1++;
+				}
+				if(pos1==5) {
+					int counter1 = position;
+					t2.setVisibility(View.GONE);
+					i1.setVisibility(View.VISIBLE);
+					i1.setImageResource(days[counter1]);
+					t1.setText(daystext[counter1]);
+					speak(t1.getText().toString());
+					counter1++;
+				}
+				if(pos1==6) {
+					int counter1 = position;
+					t2.setVisibility(View.GONE);
+					i1.setVisibility(View.VISIBLE);
+					i1.setImageResource(fruits[counter1]);
+					t1.setText(fruitstext[counter1]);
+					speak(t1.getText().toString());
+					counter1++;
+				}
+				if(pos1==7) {
+					int counter1 = position;
+					t2.setVisibility(View.GONE);
+					i1.setVisibility(View.VISIBLE);
+					i1.setImageResource(vegetables[counter1]);
+					t1.setText(vegetablestext[counter1]);
+					speak(t1.getText().toString());
+					counter1++;
+				}
+				if(pos1==8) {
+					int counter1 = position;
+					t2.setVisibility(View.GONE);
+					i1.setVisibility(View.VISIBLE);
+					i1.setImageResource(animals[counter1]);
+					t1.setText(animalstext[counter1]);
+					speak(t1.getText().toString());
+					counter1++;
+				}
+				if(pos1==9) {
+					int counter1 = position;
+					t2.setVisibility(View.GONE);
+					i1.setVisibility(View.VISIBLE);
+					i1.setImageResource(bodyparts[counter1]);
+					t1.setText(bodypartstext[counter1]);
+					speak(t1.getText().toString());
+					counter1++;
+				}
+				if(pos1==10) {
+					int counter1 = position;
+					t2.setVisibility(View.GONE);
+					i1.setVisibility(View.VISIBLE);
+					i1.setImageResource(vehicles[counter1]);
+					t1.setText(vehiclestext[counter1]);
+					speak(t1.getText().toString());
+					counter1++;
+				}
+				if(pos1==11) {
+					int counter1 = position;
+					t2.setVisibility(View.GONE);
+					i1.setVisibility(View.VISIBLE);
+					i1.setImageResource(planets[counter1]);
+					t1.setText(planetstext[counter1]);
+					speak(t1.getText().toString());
+					counter1++;
 				}
 
-
-				}
-
+			}
 			@Override
 			public void onNothingSelected(AdapterView<?> parent) {
 
 			}
 		});
-
 
 		//IMAGEVIEW USED TO DISPLAY PREVIOUS ITEM ON CLICK(i2 is previous item)
 
@@ -644,7 +679,7 @@ public class MainActivity extends ActionBarActivity {
 						counter = 1;
 					}
 					t2.setVisibility(View.GONE);
-					//l1.setVisibility(View.VISIBLE);
+					i1.setVisibility(View.VISIBLE);
 					i1.setImageResource(alphabets[counter]);
 					t1.setText(alphabetstext[counter]);
 
@@ -667,8 +702,7 @@ public class MainActivity extends ActionBarActivity {
 					counter++;
 					i1.setVisibility(View.GONE);
 					i5.setVisibility(View.GONE);
-					//l1.setVisibility(View.GONE);
-					l1.setVisibility(View.VISIBLE);
+					l1.setVisibility(View.GONE);
 					l3.setVisibility(View.GONE);
 					String c = Integer.toString(counter);
 					t2.setVisibility(View.VISIBLE);
@@ -681,6 +715,7 @@ public class MainActivity extends ActionBarActivity {
 						counter = 1;
 					}
 					t2.setVisibility(View.GONE);
+
 					i1.setVisibility(View.VISIBLE);
 					i1.setImageResource(colors[counter]);
 					t1.setText(colorstext[counter]);
@@ -910,7 +945,7 @@ public class MainActivity extends ActionBarActivity {
 
 //FRAME LAYOUT WHICH CAN BE USED FOR SWIPING.THIS LISTENER CAN BE CALLED THE ONTOUCHEVENT()IN THE ACTIVITY OUTOF ONCREATE()
 
-		l1.setOnTouchListener(new View.OnTouchListener() {
+		i1.setOnTouchListener(new View.OnTouchListener() {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 
@@ -1616,32 +1651,92 @@ public class MainActivity extends ActionBarActivity {
 		client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 	}
 
-	//modifications regarding spinner list
+//HERE I AM DEFINING THIS METHOD AND SETTING SPINNER DROPDOWN LIST BASED ON GALLERY SELECTION
 
-
-/*public void spinnerchild(int pos2)
-{
-	if(pos2==0) {
-		aa = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, alphabetstext);
-		s.setAdapter(aa);
-		i1.setImageResource(alphabets[2]);
-		t1.setText(alphabetstext[2]);
-		t2.setVisibility(View.GONE);
-		speak(t1.getText().toString());
-
-	}
-	else
+	public void select(int position)
 	{
-		if(pos2==1) {
-			aa = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, numberstext);
-			s.setAdapter(aa);
-			i1.setImageResource(numbers[2]);
-			t1.setText(numberstext[2]);
-			t2.setVisibility(View.GONE);
-			speak(t1.getText().toString());
+		if(pos1 == 0){
+			ArrayAdapter alphabet;
+			alphabet = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_dropdown_item, alphabetstext);
+			s.setAdapter(alphabet);
+			alphabet.notifyDataSetChanged();
 		}
+		if (pos1 == 1) {
+			t2.setText("");
+			ArrayAdapter numb;
+			numb = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_dropdown_item, numberstext);
+			s.setAdapter(numb);
+			numb.notifyDataSetChanged();
+		}
+		if(pos1 == 2){
+			ArrayAdapter color;
+			color = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_dropdown_item, colorstext);
+			s.setAdapter(color);
+			color.notifyDataSetChanged();
+		}
+		if(pos1 == 3){
+			ArrayAdapter shape;
+			shape = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_dropdown_item, shapestext);
+			s.setAdapter(shape);
+			shape.notifyDataSetChanged();
+		}
+		if(pos1 == 4){
+			ArrayAdapter month;
+			month = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_dropdown_item, monthstext);
+			s.setAdapter(month);
+			month.notifyDataSetChanged();
+		}
+		if(pos1 == 5){
+			ArrayAdapter day;
+			day = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_dropdown_item, daystext);
+			s.setAdapter(day);
+			day.notifyDataSetChanged();
+		}
+		if(pos1 == 6){
+			ArrayAdapter fruit;
+			fruit = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_dropdown_item, fruitstext);
+			s.setAdapter(fruit);
+			fruit.notifyDataSetChanged();
+		}
+		if(pos1 == 7){
+			ArrayAdapter vegetable;
+			vegetable = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_dropdown_item, vegetablestext);
+			s.setAdapter(vegetable);
+			vegetable.notifyDataSetChanged();
+		}
+
+		if(pos1 == 8){
+			ArrayAdapter animal;
+			animal = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_dropdown_item, animalstext);
+			s.setAdapter(animal);
+			animal.notifyDataSetChanged();
+		}
+
+		if(pos1 == 9){
+			ArrayAdapter bodypart;
+			bodypart = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_dropdown_item, bodypartstext);
+			s.setAdapter(bodypart);
+			bodypart.notifyDataSetChanged();
+		}
+
+		if(pos1 == 10){
+			ArrayAdapter vehicle;
+			vehicle = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_dropdown_item, vehiclestext);
+			s.setAdapter(vehicle);
+			vehicle.notifyDataSetChanged();
+		}
+
+		if(pos1 == 11){
+			ArrayAdapter planet;
+			planet = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_dropdown_item, planetstext);
+			s.setAdapter(planet);
+			planet.notifyDataSetChanged();
+		}
+
+
 	}
-}*/
+
+
 	/*//WE OVERRIDE THE ONTOUCHEVENT() METHOD OF THE ACTIVITY TO DETECT VARIOUS TOUCH EVENTS:
       //BY CALLING F1.SETONTOUCHLISTENER()..THIS ONTOUCHEVENT METHOD IS CALLED BY THIS LISTENER
       //THIS ONTOUCHEVENT()SHOULD BE OUTOF ONCREATE() AND WITHIN MAINACTIVITY*/
@@ -1677,6 +1772,7 @@ public class MainActivity extends ActionBarActivity {
 							counter = alphabets.length;
 						}
 						counter--;
+
 						t2.setVisibility(View.GONE);
 						i1.setVisibility(View.VISIBLE);
 						i1.setImageResource(alphabets[counter]);
@@ -1708,6 +1804,7 @@ public class MainActivity extends ActionBarActivity {
 							counter = colors.length;
 						}
 						counter--;
+
 						t2.setVisibility(View.GONE);
 						i1.setVisibility(View.VISIBLE);
 						i1.setImageResource(colors[counter]);
@@ -1855,7 +1952,7 @@ public class MainActivity extends ActionBarActivity {
 
 				if (initialX > finalX) {
 					Log.d(TAG, "Right to Left swipe performed");
-					//i5.setImageResource(alphabets[2]);
+
 					if (pos == 0) {
 
 						counter++;
@@ -1898,6 +1995,7 @@ public class MainActivity extends ActionBarActivity {
 							counter = 1;
 						}
 						t2.setVisibility(View.GONE);
+
 						i1.setVisibility(View.VISIBLE);
 						i1.setImageResource(colors[counter]);
 						t1.setText(colorstext[counter]);

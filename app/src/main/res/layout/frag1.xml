@@ -18,9 +18,10 @@
         android:layout_height="0dp">
         <Spinner
             android:layout_width="0dp"
+            android:spinnerMode="dropdown"
             android:layout_weight="0.50"
             android:layout_height="wrap_content"
-            android:popupBackground="#a2e34d"
+            android:popupBackground="#573293"
             android:id="@+id/spinner1"></Spinner>
 
 
@@ -45,7 +46,7 @@ android:gravity="center"
                  android:background="#992288"
                  android:layout_gravity="center"
                  android:gravity="center"
-                 android:layout_weight="0.50"
+                 android:layout_weight="0.40"
                  
                  android:layout_width="0dp"
                  android:layout_height="wrap_content"
@@ -85,7 +86,7 @@ android:gravity="center"
             android:background="@drawable/shape2"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/shape2"
+            android:src="@drawable/shape1"
             android:clickable="true"/>
 
 

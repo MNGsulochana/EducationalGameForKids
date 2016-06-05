@@ -148,12 +148,12 @@
         "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\wednesday.bmp"
     },
     {
-        "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\quince.bmp",
-        "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\quince.bmp"
-    },
-    {
         "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\animalspage.bmp",
         "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\animalspage.bmp"
+    },
+    {
+        "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\quince.bmp",
+        "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\quince.bmp"
     },
     {
         "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\z.bmp",
@@ -224,16 +224,12 @@
         "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\tongue.bmp"
     },
     {
-        "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\solarsystm_main.bmp",
-        "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\solarsystm_main.bmp"
+        "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\pineapple.bmp",
+        "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\pineapple.bmp"
     },
     {
         "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\fox.bmp",
         "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\fox.bmp"
-    },
-    {
-        "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\pineapple.bmp",
-        "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\pineapple.bmp"
     },
     {
         "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\black.bmp",
@@ -524,16 +520,16 @@
         "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\tractor.bmp"
     },
     {
-        "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\shape2.xml",
-        "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\shape2.xml"
-    },
-    {
         "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\february.bmp",
         "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\february.bmp"
     },
     {
         "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\apricot.bmp",
         "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\apricot.bmp"
+    },
+    {
+        "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\shape2.xml",
+        "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\shape2.xml"
     },
     {
         "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\splashshape1.xml",
@@ -564,6 +560,10 @@
         "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\august.bmp"
     },
     {
+        "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\planet_13.bmp",
+        "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\planet_13.bmp"
+    },
+    {
         "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\nose1.bmp",
         "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\nose1.bmp"
     },
@@ -574,10 +574,6 @@
     {
         "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\rectangle.bmp",
         "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\rectangle.bmp"
-    },
-    {
-        "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\planet_2.bmp",
-        "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\planet_2.bmp"
     },
     {
         "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\horse.bmp",
@@ -628,10 +624,6 @@
         "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\cranberry.bmp"
     },
     {
-        "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\planet_1.bmp",
-        "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\planet_1.bmp"
-    },
-    {
         "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\thumb.bmp",
         "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\thumb.bmp"
     },
@@ -666,10 +658,6 @@
     {
         "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\onion.bmp",
         "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\onion.bmp"
-    },
-    {
-        "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\planet_3.bmp",
-        "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\planet_3.bmp"
     },
     {
         "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\cauliflower1.bmp",
@@ -1102,10 +1090,6 @@
     {
         "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\violet.bmp",
         "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\violet.bmp"
-    },
-    {
-        "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\planet.bmp",
-        "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\planet.bmp"
     },
     {
         "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\october.bmp",

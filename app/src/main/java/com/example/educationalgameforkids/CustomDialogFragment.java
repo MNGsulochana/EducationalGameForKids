@@ -47,7 +47,7 @@ public class CustomDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         d=null;
-        if (firstTime()) {
+       if (firstTime()) {
             AlertDialog.Builder ad = new AlertDialog.Builder(getActivity());
             View v = getActivity().getLayoutInflater().inflate(R.layout.fragment_custom_dialog, null);
             et = (EditText) v.findViewById(R.id.editText);
@@ -85,7 +85,7 @@ public class CustomDialogFragment extends DialogFragment {
         }
         return d;
     }
-    public boolean firstTime()
+   public boolean firstTime()
     {
         SharedPreferences sp = getActivity().getPreferences(Context.MODE_PRIVATE);
         boolean before = sp.getBoolean("RAN BEFORE",false);
