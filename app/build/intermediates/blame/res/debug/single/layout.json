@@ -4,12 +4,12 @@
         "source": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\21.0.3\\res\\layout\\abc_action_mode_bar.xml"
     },
     {
-        "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
-        "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\layout\\activity_main.xml"
-    },
-    {
         "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple.xml",
         "source": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\21.0.3\\res\\layout\\abc_screen_simple.xml"
+    },
+    {
+        "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
+        "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
         "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_close_item_material.xml",

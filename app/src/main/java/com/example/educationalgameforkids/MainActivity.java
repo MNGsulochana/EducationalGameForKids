@@ -60,6 +60,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 public class MainActivity extends ActionBarActivity {
 	AssetManager assetManager;
+	CustomDialogFragment cf;
 	LinearLayout l1, l2, l3;
 	FrameLayout f1;
 	Button b1, b2, b3, b4;
@@ -193,9 +194,10 @@ public class MainActivity extends ActionBarActivity {
 
 
 		//form here we are calling the customdialog fragment
-		/*CustomDialogFragment cf=new CustomDialogFragment();
-		cf.show(getSupportFragmentManager(),"hi");*/
-
+		cf=new CustomDialogFragment();
+		if(cf.firstTime()) {
+			cf.show(getSupportFragmentManager(), "hi");
+		}
 		final AssetManager assetManager = getAssets();
 
 //INITIALIZE SPINNER

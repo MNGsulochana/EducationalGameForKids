@@ -1,13 +1,16 @@
 package com.example.educationalgameforkids;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
+import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -15,6 +18,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -32,6 +36,7 @@ public class CustomDialogFragment extends DialogFragment {
 
     Dialog d;
     Button ok;
+    String picturePath;
     ImageButton camera,galry;
     ImageView iv_photo;
     EditText et;
@@ -47,7 +52,7 @@ public class CustomDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         d=null;
-       if (firstTime()) {
+     //  if (firstTime()) {
             AlertDialog.Builder ad = new AlertDialog.Builder(getActivity());
             View v = getActivity().getLayoutInflater().inflate(R.layout.fragment_custom_dialog, null);
             et = (EditText) v.findViewById(R.id.editText);
@@ -60,6 +65,8 @@ public class CustomDialogFragment extends DialogFragment {
                 @Override
                 public void onClick(View v) {
                     Intent cam = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                 //   cam.putExtra(android.provider.MediaStore.EXTRA_SCREEN_ORIENTATION, ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                  // CustomDialogFragment.setCameraDisplayOrientation(CustomDialogFragment,1,cam);
                     startActivityForResult(cam, REQ_CD);
                 }
             });
@@ -82,9 +89,40 @@ public class CustomDialogFragment extends DialogFragment {
             // ad.setTitle((CharSequence) tv_welco);
             ad.setView(v);
             d = ad.create();
-        }
+      /*  }
+        else
+       {
+           iv_photo.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+       }*/
         return d;
     }
+    /*public static void setCameraDisplayOrientation(Activity activity,
+                                                   int cameraId, android.hardware.Camera camera) {
+
+        android.hardware.Camera.CameraInfo info =
+                new android.hardware.Camera.CameraInfo();
+
+        android.hardware.Camera.getCameraInfo(cameraId, info);
+
+        int rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
+        int degrees = 0;
+
+        switch (rotation) {
+            case Surface.ROTATION_0: degrees = 0; break;
+            case Surface.ROTATION_90: degrees = 90; break;
+            case Surface.ROTATION_180: degrees = 180; break;
+            case Surface.ROTATION_270: degrees = 270; break;
+        }
+
+        int result;
+        if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+            result = (info.orientation + degrees) % 360;
+            result = (360 - result) % 360;  // compensate the mirror
+        } else {  // back-facing
+            result = (info.orientation - degrees + 360) % 360;
+        }
+        camera.setDisplayOrientation(result);
+    }*/
    public boolean firstTime()
     {
         SharedPreferences sp = getActivity().getPreferences(Context.MODE_PRIVATE);
@@ -95,7 +133,7 @@ public class CustomDialogFragment extends DialogFragment {
             et.putBoolean("RAN BEFORE",true);
             et.commit();
         }
-        return !before;
+        return before;
     }
 
     @Override
@@ -112,7 +150,7 @@ public class CustomDialogFragment extends DialogFragment {
                 cursor.moveToFirst();
 
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                String picturePath = cursor.getString(columnIndex);
+                picturePath = cursor.getString(columnIndex);
                 cursor.close();
 
                 iv_photo.setImageBitmap(BitmapFactory.decodeFile(picturePath));
