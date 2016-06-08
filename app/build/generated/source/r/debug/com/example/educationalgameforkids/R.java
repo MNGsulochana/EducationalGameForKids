@@ -1602,13 +1602,14 @@ containing a value of this type.
         public static final int watermelon=0x7f020137;
         public static final int wednesday=0x7f020138;
         public static final int wel=0x7f020139;
-        public static final int white=0x7f02013a;
-        public static final int wolf=0x7f02013b;
-        public static final int x=0x7f02013c;
-        public static final int y=0x7f02013d;
-        public static final int yellow=0x7f02013e;
-        public static final int z=0x7f02013f;
-        public static final int zebra1=0x7f020140;
+        public static final int welcome=0x7f02013a;
+        public static final int white=0x7f02013b;
+        public static final int wolf=0x7f02013c;
+        public static final int x=0x7f02013d;
+        public static final int y=0x7f02013e;
+        public static final int yellow=0x7f02013f;
+        public static final int z=0x7f020140;
+        public static final int zebra1=0x7f020141;
     }
     public static final class id {
         public static final int action_bar=0x7f0b0033;

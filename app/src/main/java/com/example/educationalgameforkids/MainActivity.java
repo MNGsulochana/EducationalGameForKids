@@ -81,7 +81,7 @@ public class MainActivity extends ActionBarActivity {
 	float initialX,initialY;
 
 //HERE I ADDED PLANET ARRAY AND ADD ELEMENT IN ALPHABET ARRAY
-
+	int[] welcome={R.drawable.welcome};
 	int[] galleryposition = {R.drawable.gallery1, R.drawable.gallery2, R.drawable.colorspage, R.drawable.shapespage,
 			R.drawable.monthspage, R.drawable.dayspage, R.drawable.fruitspage, R.drawable.vegetablespage, R.drawable.animalspage,
 			R.drawable.bodypartspage, R.drawable.vehiclespage,R.drawable.planet_13,R.drawable.numberquiz, R.drawable.gallery4};
@@ -182,6 +182,14 @@ public class MainActivity extends ActionBarActivity {
 		super.onBackPressed();
 	}
 
+//HERE I AM GETTNG THE NAME WHAT USERR ENTERS AND BASED ON THAT TEXT IT WILL SPEAK...THIS METHOD IS IN CUSTOMDIALOG FRAGMENT
+
+public void calname(String name)
+{
+	String s1="hi "+name+" welcome";
+	i1.setImageResource(welcome[0]);
+	speak(s1);
+}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -195,9 +203,9 @@ public class MainActivity extends ActionBarActivity {
 
 		//form here we are calling the customdialog fragment
 		cf=new CustomDialogFragment();
-		if(cf.firstTime()) {
+		//if(cf.firstTime()) {
 			cf.show(getSupportFragmentManager(), "hi");
-		}
+		//}
 		final AssetManager assetManager = getAssets();
 
 //INITIALIZE SPINNER

@@ -9,8 +9,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.hardware.Camera;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -27,6 +30,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.IOException;
 
 
 /**
@@ -81,12 +86,15 @@ public class CustomDialogFragment extends DialogFragment {
                 @Override
                 public void onClick(View v) {
                     String name = et.getText().toString();
-                    Toast.makeText(getActivity(), "hi" + name + "welcome", Toast.LENGTH_SHORT).show();
+                   // MainActivity m = null;
+                    MainActivity m= (MainActivity) getActivity();
+                   // Toast.makeText(getActivity(), "hi " + name + " welcome ", Toast.LENGTH_SHORT).show();
+                    m.calname(name);
                     d.dismiss();
                 }
             });
 
-            // ad.setTitle((CharSequence) tv_welco);
+
             ad.setView(v);
             d = ad.create();
       /*  }
@@ -96,45 +104,24 @@ public class CustomDialogFragment extends DialogFragment {
        }*/
         return d;
     }
-    /*public static void setCameraDisplayOrientation(Activity activity,
-                                                   int cameraId, android.hardware.Camera camera) {
 
-        android.hardware.Camera.CameraInfo info =
-                new android.hardware.Camera.CameraInfo();
-
-        android.hardware.Camera.getCameraInfo(cameraId, info);
-
-        int rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
-        int degrees = 0;
-
-        switch (rotation) {
-            case Surface.ROTATION_0: degrees = 0; break;
-            case Surface.ROTATION_90: degrees = 90; break;
-            case Surface.ROTATION_180: degrees = 180; break;
-            case Surface.ROTATION_270: degrees = 270; break;
-        }
-
-        int result;
-        if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
-            result = (info.orientation + degrees) % 360;
-            result = (360 - result) % 360;  // compensate the mirror
-        } else {  // back-facing
-            result = (info.orientation - degrees + 360) % 360;
-        }
-        camera.setDisplayOrientation(result);
-    }*/
-   public boolean firstTime()
+ /*  public boolean firstTime()
     {
         SharedPreferences sp = getActivity().getPreferences(Context.MODE_PRIVATE);
-        boolean before = sp.getBoolean("RAN BEFORE",false);
-        if(!before)
-        {
-            SharedPreferences.Editor et = sp.edit();
-            et.putBoolean("RAN BEFORE",true);
-            et.commit();
+        boolean before = false;
+        if(sp!=null) {
+            before = sp.getBoolean("RAN BEFORE", false);
+
+            if (!before) {
+                SharedPreferences.Editor et = sp.edit();
+                et.putBoolean("RAN BEFORE", true);
+                et.commit();
+
+            }
         }
+
         return before;
-    }
+    }*/
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -145,15 +132,45 @@ public class CustomDialogFragment extends DialogFragment {
                 Uri selectedImage = data.getData();
                 String[] filePathColumn = { MediaStore.Images.Media.DATA };
 
+//HERE WE ARE GETTING THE IMAGE FROM GALLERY
+
                 Cursor cursor = getActivity().managedQuery(selectedImage,
                         filePathColumn, null, null, null);
                 cursor.moveToFirst();
-
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                 picturePath = cursor.getString(columnIndex);
                 cursor.close();
 
-                iv_photo.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+//HERE I AM GETTING THE IMAGE FROM STRING VARIABLE "PICTUREPATH"
+                Bitmap bmp=BitmapFactory.decodeFile(picturePath);
+
+//HERE  I AM SETTING THE ROTATION OF PICTURE BY USING EXIFINTERFACE
+
+                ExifInterface e=null;
+                try {
+                    e=new ExifInterface(picturePath);//HERE WE ARE GIVING PICTURE LOCATION
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                int orientation=e.getAttributeInt(ExifInterface.TAG_ORIENTATION,ExifInterface.ORIENTATION_UNDEFINED);
+
+//HERE I AM CREATING OBJECT FOR MATRIX CLASS FOR SCALING,THIS CLASS IS FOR GRAPHICS
+                Matrix m=new Matrix();
+                switch (orientation)
+                {
+                    case ExifInterface.ORIENTATION_ROTATE_90:
+                         m.setRotate(90);
+                        break;
+                    case ExifInterface.ORIENTATION_ROTATE_180:
+                        m.setRotate(180);
+                        break;
+                    default:
+                        break;
+                }
+
+                Bitmap rotateimage=Bitmap.createBitmap(bmp,0,0,bmp.getWidth(),bmp.getHeight(),m,true);
+                iv_photo.setImageBitmap(rotateimage);
+
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
