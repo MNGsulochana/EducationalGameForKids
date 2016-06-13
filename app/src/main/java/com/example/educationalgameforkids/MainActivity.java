@@ -1,11 +1,18 @@
 package com.example.educationalgameforkids;
+import java.io.ByteArrayOutputStream;
 import java.io.FileDescriptor;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Locale;
 import java.util.concurrent.Delayed;
 
 import javax.security.auth.Destroyable;
 
+import android.annotation.TargetApi;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.speech.tts.TextToSpeech;
@@ -14,6 +21,7 @@ import android.speech.tts.TextToSpeech.OnInitListener;
 import android.speech.tts.TextToSpeech.OnUtteranceCompletedListener;
 import android.support.v7.app.ActionBarActivity;
 import android.text.format.Time;
+import android.util.Base64;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -52,6 +60,7 @@ import android.os.Environment;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore.Audio;
 import android.provider.OpenableColumns;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -59,6 +68,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 
 public class MainActivity extends ActionBarActivity {
+	Calendar calendar;
+	int hour,minute;
 	AssetManager assetManager;
 	CustomDialogFragment cf;
 	LinearLayout l1, l2, l3;
@@ -75,8 +86,10 @@ public class MainActivity extends ActionBarActivity {
 	int count = 1;
 	int w1, h1;
 	int width, height;
-	Spinner s,s1;
+	Spinner s;
+	String kid_name,s1;
 	ArrayAdapter<String> aa;
+	Bitmap bmp;
 	private String TAG="SUCHI";
 	float initialX,initialY;
 
@@ -184,13 +197,62 @@ public class MainActivity extends ActionBarActivity {
 
 //HERE I AM GETTNG THE NAME WHAT USERR ENTERS AND BASED ON THAT TEXT IT WILL SPEAK...THIS METHOD IS IN CUSTOMDIALOG FRAGMENT
 
-public void calname(String name)
+public void calname(String name, Bitmap bmp)
 {
-	String s1="hi "+name+" welcome";
-	i1.setImageResource(welcome[0]);
+	getTime();
+	if(hour>=12&&hour<=24)
+	{
+		s1="hi "+name+" good evening welcome";
+	}
+	else if(hour>0&&hour<=12)
+	{
+		s1="hi "+name+"good morning welcome";
+	}
+	//String s1="hi "+name+" welcome";
+    kid_name=name;
+	SharedPreferences sp=getSharedPreferences("kiddetail",0);
+	SharedPreferences.Editor et=sp.edit();
+	et.putString("kid_name",kid_name);
+	et.putString("image",encodeTobase64(bmp));
+	et.commit();
+	i1.setImageBitmap(bmp);
 	speak(s1);
 }
 
+	private String encodeTobase64(Bitmap bmp) {
+		Bitmap imag=bmp;
+		ByteArrayOutputStream baos=new ByteArrayOutputStream();
+		imag.compress(Bitmap.CompressFormat.PNG,100,baos);
+		byte[] b=baos.toByteArray();
+		String image= Base64.encodeToString(b,Base64.DEFAULT);
+		return image;
+	}
+	public  void getTime()
+	{
+		calendar=Calendar.getInstance();
+		hour=calendar.get(Calendar.HOUR);
+		Log.d("SUCHANDRA",""+hour);
+		minute=calendar.get(Calendar.MINUTE);
+	}
+
+//HERE WE ARE GETTING THE DIALOG FRAGMENT ONE TIME ONLY..WHILE LAUNCHING APPLICATION FIRST TIME
+
+public boolean firstTime()
+{
+	SharedPreferences sp = getPreferences(Context.MODE_PRIVATE);
+
+	boolean  before = sp.getBoolean("RAN BEFORE", false);
+
+	if (!before)
+	{
+		SharedPreferences.Editor et = sp.edit();
+		et.putBoolean("RAN BEFORE", true);
+		et.commit();
+	}
+
+	return !before;
+}
+	@TargetApi(Build.VERSION_CODES.KITKAT)
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -202,10 +264,11 @@ public void calname(String name)
 
 
 		//form here we are calling the customdialog fragment
-		cf=new CustomDialogFragment();
-		//if(cf.firstTime()) {
+		if(firstTime())
+		{
+		    CustomDialogFragment cf=new CustomDialogFragment();
 			cf.show(getSupportFragmentManager(), "hi");
-		//}
+		}
 		final AssetManager assetManager = getAssets();
 
 //INITIALIZE SPINNER
@@ -247,6 +310,31 @@ public void calname(String name)
 		l1.setVisibility(View.GONE);
 		l3.setVisibility(View.GONE);
 		i6.setVisibility(View.GONE);
+		SharedPreferences sp=getSharedPreferences("kiddetail",0);
+		String nam=sp.getString("kid_name","");
+		String imagepath=sp.getString("image","");
+
+		if(!(imagepath.equals("")))
+		{
+			bmp=decodebase64(imagepath);
+			i1.setImageBitmap(bmp);
+		}
+		getTime();
+		if(!(nam.equals(""))) {
+			if(hour>=12&&hour<=24)
+			{
+				String name="hi "+nam+" good evening welcome";
+				speak(name);
+			}
+			else if(hour>0&&hour<=12)
+			{
+				String name="hi "+nam+"good morning welcome";
+				speak(name);
+			}
+
+			//speak(name);
+		}
+
 
 		//GALLERY CLICKS
 		ga.setOnItemClickListener(new OnItemClickListener() {
@@ -285,7 +373,7 @@ public void calname(String name)
 
 				if(position!=-1)
 				{
-					select(position);
+					spinnerselect(position);
 				}
 //HERE I AM MAKING SPINNER IS VISIBLE
 				Log.d(TAG,"pos:"+pos);
@@ -366,8 +454,14 @@ public void calname(String name)
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 				//if (position == 0) {
+				int counter1 = position;
+				counter = counter1;
 				if(pos1==0) {
-					int counter1 = position;
+
+					if(counter1==alphabets.length)
+					{
+						counter1=1;
+					}
 					t2.setVisibility(View.GONE);
 					i1.setVisibility(View.VISIBLE);
 					i1.setImageResource(alphabets[counter1]);
@@ -376,7 +470,7 @@ public void calname(String name)
 					counter1++;
 				}
 				if(pos1==1) {
-					int counter1 = position;
+					//int counter1 = position;
 					t2.setVisibility(View.GONE);
 					i1.setVisibility(View.VISIBLE);
 					i1.setImageResource(numbers[counter1]);
@@ -385,7 +479,7 @@ public void calname(String name)
 					counter1++;
 				}
 				if(pos1==2) {
-					int counter1 = position;
+					//int counter1 = position;
 					t2.setVisibility(View.GONE);
 					i1.setVisibility(View.VISIBLE);
 					i1.setImageResource(colors[counter1]);
@@ -394,7 +488,7 @@ public void calname(String name)
 					counter1++;
 				}
 				if(pos1==3) {
-					int counter1 = position;
+					//int counter1 = position;
 					t2.setVisibility(View.GONE);
 					i1.setVisibility(View.VISIBLE);
 					i1.setImageResource(shapes[counter1]);
@@ -403,7 +497,7 @@ public void calname(String name)
 					counter1++;
 				}
 				if(pos1==4) {
-					int counter1 = position;
+					//int counter1 = position;
 					t2.setVisibility(View.GONE);
 					i1.setVisibility(View.VISIBLE);
 					i1.setImageResource(months[counter1]);
@@ -412,7 +506,7 @@ public void calname(String name)
 					counter1++;
 				}
 				if(pos1==5) {
-					int counter1 = position;
+					//int counter1 = position;
 					t2.setVisibility(View.GONE);
 					i1.setVisibility(View.VISIBLE);
 					i1.setImageResource(days[counter1]);
@@ -421,7 +515,7 @@ public void calname(String name)
 					counter1++;
 				}
 				if(pos1==6) {
-					int counter1 = position;
+					//int counter1 = position;
 					t2.setVisibility(View.GONE);
 					i1.setVisibility(View.VISIBLE);
 					i1.setImageResource(fruits[counter1]);
@@ -430,7 +524,7 @@ public void calname(String name)
 					counter1++;
 				}
 				if(pos1==7) {
-					int counter1 = position;
+					//int counter1 = position;
 					t2.setVisibility(View.GONE);
 					i1.setVisibility(View.VISIBLE);
 					i1.setImageResource(vegetables[counter1]);
@@ -439,7 +533,7 @@ public void calname(String name)
 					counter1++;
 				}
 				if(pos1==8) {
-					int counter1 = position;
+					//int counter1 = position;
 					t2.setVisibility(View.GONE);
 					i1.setVisibility(View.VISIBLE);
 					i1.setImageResource(animals[counter1]);
@@ -448,7 +542,7 @@ public void calname(String name)
 					counter1++;
 				}
 				if(pos1==9) {
-					int counter1 = position;
+					//int counter1 = position;
 					t2.setVisibility(View.GONE);
 					i1.setVisibility(View.VISIBLE);
 					i1.setImageResource(bodyparts[counter1]);
@@ -457,7 +551,7 @@ public void calname(String name)
 					counter1++;
 				}
 				if(pos1==10) {
-					int counter1 = position;
+					//int counter1 = position;
 					t2.setVisibility(View.GONE);
 					i1.setVisibility(View.VISIBLE);
 					i1.setImageResource(vehicles[counter1]);
@@ -466,7 +560,7 @@ public void calname(String name)
 					counter1++;
 				}
 				if(pos1==11) {
-					int counter1 = position;
+					//int counter1 = position;
 					t2.setVisibility(View.GONE);
 					i1.setVisibility(View.VISIBLE);
 					i1.setImageResource(planets[counter1]);
@@ -581,7 +675,6 @@ public void calname(String name)
 					speak(t1.getText().toString());
 
 				} else if (pos == 6) {
-
 					if (counter == 0) {
 						counter = fruits.length;
 					}
@@ -968,7 +1061,7 @@ public void calname(String name)
 
 //IMAGEVIEW WHICH DISPLAYS IMAGES AND WHEN CLICKED SPEAKS CURRENT IMAGE NAME 
 
-		i1.setOnClickListener(new OnClickListener() {
+		/*i1.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -1133,8 +1226,7 @@ public void calname(String name)
 
 			}
 		});
-	
-
+*/
 //TextView used in FrameLayout to display numbers from 1 to 1000(GALLERY ITEM POSITION 1-NUMBERS)
 		t2.setOnClickListener(new OnClickListener() {
 
@@ -1661,9 +1753,14 @@ public void calname(String name)
 		client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 	}
 
+	private Bitmap decodebase64(String imagepath) {
+		byte[] decodeimage=Base64.decode(imagepath,0);
+		return BitmapFactory.decodeByteArray(decodeimage,0,decodeimage.length);
+	}
+
 //HERE I AM DEFINING THIS METHOD AND SETTING SPINNER DROPDOWN LIST BASED ON GALLERY SELECTION
 
-	public void select(int position)
+	public void spinnerselect(int position)
 	{
 		if(pos1 == 0){
 			ArrayAdapter alphabet;
@@ -1772,7 +1869,7 @@ public void calname(String name)
 
 				if (initialX < finalX) {
 					Log.d(TAG, "Left to Right swipe performed");
-					//i5.setImageResource(alphabets[1]);
+
 					if (pos == 0) {
 
 						if (counter == 0) {
@@ -1972,10 +2069,7 @@ public void calname(String name)
 						t2.setVisibility(View.GONE);
 						i1.setImageResource(alphabets[counter]);
 						t1.setText(alphabetstext[counter]);
-
 						speak(t1.getText().toString());
-
-
 
 					//MyThread m=new MyThread();
 					//m.start();
@@ -1984,7 +2078,7 @@ public void calname(String name)
 					//}
 
 
-					} else if (pos == 1) {
+					}else if (pos == 1) {
 						if (counter == 999) {
 							counter = 0;
 						}
