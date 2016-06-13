@@ -4,6 +4,7 @@ import java.io.FileDescriptor;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.TimeZone;
 import java.util.concurrent.Delayed;
 
 import javax.security.auth.Destroyable;
@@ -20,6 +21,7 @@ import android.speech.tts.UtteranceProgressListener;
 import android.speech.tts.TextToSpeech.OnInitListener;
 import android.speech.tts.TextToSpeech.OnUtteranceCompletedListener;
 import android.support.v7.app.ActionBarActivity;
+import android.text.format.DateFormat;
 import android.text.format.Time;
 import android.util.Base64;
 import android.util.Log;
@@ -92,6 +94,7 @@ public class MainActivity extends ActionBarActivity {
 	Bitmap bmp;
 	private String TAG="SUCHI";
 	float initialX,initialY;
+	String s3;
 
 //HERE I ADDED PLANET ARRAY AND ADD ELEMENT IN ALPHABET ARRAY
 	int[] welcome={R.drawable.welcome};
@@ -199,16 +202,31 @@ public class MainActivity extends ActionBarActivity {
 
 public void calname(String name, Bitmap bmp)
 {
-	getTime();
-	if(hour>=12&&hour<=24)
+	/*s3=getTime();
+	String s1="hi "+name+s3+"welcome";*/
+	/*if (hour>=12&&)
 	{
 		s1="hi "+name+" good evening welcome";
+		//speak(name);
 	}
-	else if(hour>0&&hour<=12)
+	else
 	{
 		s1="hi "+name+"good morning welcome";
+		//speak(name);
+	}*/
+
+	/*if(hour>=12&&hour<=24)
+	{
+		Log.d("SUCHANDRA",""+hour);
+		s1="hi "+name+" good evening welcome";
 	}
-	//String s1="hi "+name+" welcome";
+	else {
+		if (hour > 0 && hour <= 12) {
+			Log.d("SUCHANDRAAAAAAAAAAA", "" + hour);
+			s1 = "hi " + name + "good morning welcome";
+		}
+	}*/
+	String s1="hi "+name+" welcome";
     kid_name=name;
 	SharedPreferences sp=getSharedPreferences("kiddetail",0);
 	SharedPreferences.Editor et=sp.edit();
@@ -227,14 +245,35 @@ public void calname(String name, Bitmap bmp)
 		String image= Base64.encodeToString(b,Base64.DEFAULT);
 		return image;
 	}
-	public  void getTime()
+	/*public  String getTime()
 	{
 		calendar=Calendar.getInstance();
-		hour=calendar.get(Calendar.HOUR);
-		Log.d("SUCHANDRA",""+hour);
+		DateFormat df=new DateFormat();
+		hour=calendar.get(Calendar.HOUR_OF_DAY);
+		Log.d("SUCHANDRA12",""+hour);
 		minute=calendar.get(Calendar.MINUTE);
+		String s2=null;
+		if(hour<=12||hour>=0)
+		{
+			s2="good morning";
+		}
+		else
+		{
+			if(hour>12||hour<=16)
+			{
+				s2="good afternoon";
+			}
+			else
+			{
+				if(hour>16|hour<=24)
+				{
+					s2="good evenig";
+				}
+			}
+		}
+	return s2;
 	}
-
+*/
 //HERE WE ARE GETTING THE DIALOG FRAGMENT ONE TIME ONLY..WHILE LAUNCHING APPLICATION FIRST TIME
 
 public boolean firstTime()
@@ -319,23 +358,24 @@ public boolean firstTime()
 			bmp=decodebase64(imagepath);
 			i1.setImageBitmap(bmp);
 		}
-		getTime();
-		if(!(nam.equals(""))) {
-			if(hour>=12&&hour<=24)
-			{
-				String name="hi "+nam+" good evening welcome";
-				speak(name);
-			}
-			else if(hour>0&&hour<=12)
-			{
-				String name="hi "+nam+"good morning welcome";
-				speak(name);
-			}
+		/*String s4=getTime();
+		String name="hi"+nam+s4+"welcome";
+		speak(name);*/
 
-			//speak(name);
+		/*if (hour>=12)
+		{
+			String name="hi "+nam+" good evening welcome";
+			speak(name);
 		}
-
-
+		else
+		{
+			String name="hi "+nam+"good morning welcome";
+			speak(name);
+		}*/
+		if(!(nam.equals(""))) {
+			String name = "hi " + nam + " good evening welcome";
+			speak(name);
+		}
 		//GALLERY CLICKS
 		ga.setOnItemClickListener(new OnItemClickListener() {
 

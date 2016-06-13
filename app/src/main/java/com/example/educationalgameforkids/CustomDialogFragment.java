@@ -157,7 +157,7 @@ public class CustomDialogFragment extends DialogFragment {
                 }
 */
 
-                rotateimage=getResizedBitmap(bmp,200,200);
+                rotateimage=getResizedBitmap(bmp,1000,800);
                 //rotateimage=Bitmap.createBitmap(bmp,0,0,bmp.getWidth(),bmp.getHeight(),m,true);
                 //rotateimage=Bitmap.createScaledBitmap(bmp,0,0)
                 iv_photo.setImageBitmap(rotateimage);

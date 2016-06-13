@@ -224,12 +224,12 @@
         "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\tongue.bmp"
     },
     {
-        "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\fox.bmp",
-        "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\fox.bmp"
-    },
-    {
         "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\pineapple.bmp",
         "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\pineapple.bmp"
+    },
+    {
+        "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\fox.bmp",
+        "source": "F:\\sir_assigned_project_1\\app\\src\\main\\res\\drawable\\fox.bmp"
     },
     {
         "merged": "F:\\sir_assigned_project_1\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\black.bmp",
